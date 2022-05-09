@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import sequelize from 'sequelize';
@@ -18,7 +17,7 @@ import { CadastroController } from './controller/cadastro.controller';
       synchronize: true,
     }),
   ],
-  controllers: [AppController, CadastroController],
+  controllers: [CadastroController],
   providers: [AppService],
 })
 export class AppModule {}
