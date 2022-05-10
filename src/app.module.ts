@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { AppService } from './app.service';
+import { CadastroService } from './services/cadastro.services';
 import { SequelizeModule } from '@nestjs/sequelize';
-import sequelize from 'sequelize';
 import { CadastroController } from './controller/cadastro.controller';
+import { Cadastro } from './model/cadastro.model';
 
 @Module({
   imports: [
@@ -16,8 +16,9 @@ import { CadastroController } from './controller/cadastro.controller';
       autoLoadModels: true,
       synchronize: true,
     }),
+    SequelizeModule.forFeature([Cadastro]),
   ],
   controllers: [CadastroController],
-  providers: [AppService],
+  providers: [CadastroService],
 })
 export class AppModule {}
