@@ -8,63 +8,65 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { Cadastro } from 'src/model/cadastro.model';
+import { CadastroService } from 'src/services/cadastro.services';
 
 @Controller('cadastro')
 // eslint-disable-next-line prettier/prettier
 export class CadastroController {
+  constructor(private cadastroService: CadastroService) {}
   @Get()
-  buscaTodos(): string {
-    return 'todos os médicos';
+  async buscaTodos(): Promise<Cadastro[]> {
+    return this.cadastroService.buscaTodos();
   }
   @Get(':id')
-  buscaId(@Param() params): string {
-    return `id do médico ${params.id}`;
+  async buscaId(@Param() params): Promise<Cadastro> {
+    return this.cadastroService.buscaId(params.id);
   }
 
   @Get(':nome')
-  buscaNome(@Param() params): string {
-    return `nome do médico ${params.nome}`;
+  async buscaNome(@Param() params): Promise<Cadastro> {
+    return this.cadastroService.buscaNome(params.nome);
   }
   @Get(':crm')
-  buscaCrm(@Param() params): string {
-    return `retorna crm ${params.crm}`;
+  async buscaCrm(@Param() params): Promise<Cadastro> {
+    return this.cadastroService.buscaCrm(params.crm);
   }
 
   @Get(':telefone')
-  buscaTelefone(@Param() params): string {
-    return `retorna telefone do médico' ${params.telefone}`;
+  async buscaTelefone(@Param() params): Promise<Cadastro> {
+    return this.cadastroService.buscaTelefone(params.telefone);
   }
 
   @Get(':celular')
-  buscaCelular(@Param() params): string {
-    return `retorna celular do médico ${params.celular}`;
+  async buscaCelular(@Param() params): Promise<Cadastro> {
+    return this.cadastroService.buscaCelular(params.celular);
   }
 
   @Get(':cep')
-  buscaCep(@Param() params): string {
-    return `retorna cep do médico${params.cep}`;
+  async buscaCep(@Param() params): Promise<Cadastro> {
+    return this.cadastroService.buscaCep(params.cep);
   }
 
   @Get(':especialidade')
-  buscaEspecialidade(@Param() params): string {
-    return `retorna especialidade do médico ${params.especialidade}`;
+  async buscaEspecialidade(@Param() params): Promise<Cadastro> {
+    return this.cadastroService.buscaEspecialidade(params.especialidade);
   }
 
   @Post()
-  cadastra(@Body() cadastro): string {
-    console.log(cadastro);
-    return 'cadastro criado';
+  async cadastra(@Body() cadastro: Cadastro) {
+    return this.cadastroService.cadastra(cadastro);
   }
 
   @Put()
-  atualizaCadastro(@Body() cadastro): string {
-    console.log(cadastro);
-    return 'cadastro atualizado';
+  async atualizaCadastro(
+    @Body() cadastro: Cadastro,
+  ): Promise<[number, Cadastro[]]> {
+    return this.cadastroService.atualizaCadastro({ cadastro });
   }
 
   @Delete(':id')
-  deletaCadastro(@Param() params): string {
-    console.log(params);
-    return ' deletado cadastro';
+  async deletaCadastro(@Param() params) {
+    return this.cadastroService.deletaCadastro(params.id);
   }
 }
