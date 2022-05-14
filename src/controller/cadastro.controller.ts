@@ -24,31 +24,31 @@ export class CadastroController {
     return this.cadastroService.buscaId(params.id);
   }
 
-  @Get(':nome')
+  @Get('nome/:nome')
   async buscaNome(@Param() params): Promise<Cadastro> {
     return this.cadastroService.buscaNome(params.nome);
   }
-  @Get(':crm')
+  @Get('crm/:crm')
   async buscaCrm(@Param() params): Promise<Cadastro> {
     return this.cadastroService.buscaCrm(params.crm);
   }
 
-  @Get(':telefone')
+  @Get('telefone/:telefone')
   async buscaTelefone(@Param() params): Promise<Cadastro> {
     return this.cadastroService.buscaTelefone(params.telefone);
   }
 
-  @Get(':celular')
+  @Get('celular/:celular')
   async buscaCelular(@Param() params): Promise<Cadastro> {
     return this.cadastroService.buscaCelular(params.celular);
   }
 
-  @Get(':cep')
+  @Get('cep/:cep')
   async buscaCep(@Param() params): Promise<Cadastro> {
     return this.cadastroService.buscaCep(params.cep);
   }
 
-  @Get(':especialidade')
+  @Get('especialidade/:especialidade')
   async buscaEspecialidade(@Param() params): Promise<Cadastro> {
     return this.cadastroService.buscaEspecialidade(params.especialidade);
   }
@@ -62,7 +62,7 @@ export class CadastroController {
   async atualizaCadastro(
     @Body() cadastro: Cadastro,
   ): Promise<[number, Cadastro[]]> {
-    return this.cadastroService.atualizaCadastro({ cadastro });
+    return this.cadastroService.atualizaCadastro(cadastro);
   }
 
   @Delete(':id')
