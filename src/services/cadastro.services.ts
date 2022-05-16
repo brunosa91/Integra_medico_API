@@ -25,7 +25,7 @@ export class CadastroService {
     });
   }
 
-  async buscaCrm(crm: number): Promise<Cadastro> {
+  async buscaCrm(crm: string): Promise<Cadastro> {
     return this.cadastroModel.findOne({
       where: {
         crm,
@@ -33,7 +33,7 @@ export class CadastroService {
     });
   }
 
-  async buscaTelefone(telefone: number): Promise<Cadastro> {
+  async buscaTelefone(telefone: string): Promise<Cadastro> {
     return this.cadastroModel.findOne({
       where: {
         telefone,
@@ -41,7 +41,7 @@ export class CadastroService {
     });
   }
 
-  async buscaCelular(celular: number): Promise<Cadastro> {
+  async buscaCelular(celular: string): Promise<Cadastro> {
     return this.cadastroModel.findOne({
       where: {
         celular,
@@ -49,7 +49,7 @@ export class CadastroService {
     });
   }
 
-  async buscaCep(cep: number): Promise<Cadastro> {
+  async buscaCep(cep: string): Promise<Cadastro> {
     return this.cadastroModel.findOne({
       where: {
         cep,
@@ -69,22 +69,13 @@ export class CadastroService {
     this.cadastroModel.create(cadastro);
   }
 
-  async atualizaCadastro({
-    cadastro,
-  }: {
-    cadastro: Cadastro;
-  }): Promise<[number, Cadastro[]]> {
-    return newFunction();
-
-    function newFunction():
-      | [number, Cadastro[]]
-      | PromiseLike<[number, Cadastro[]]> {
-      return this.cadastroModel.update(cadastro, {
-        where: {
-          id: cadastro.id,
-        },
-      });
-    }
+  async atualizaCadastro(cadastro: Cadastro): Promise<[number, Cadastro[]]> {
+    return this.cadastroModel.update(cadastro, {
+      where: {
+        id: cadastro.id,
+      },
+      returning: true,
+    });
   }
 
   async deletaCadastro(id: number) {
