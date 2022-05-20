@@ -1,0 +1,19 @@
+version: '3'
+services:
+  database:
+    build: './database/'
+    container_name: 'database-container'
+    volumes:
+      - ./database/dados:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+  api:
+    build: './'
+    container_name: 'api-container'
+    volumes:
+      - ./:/home/node/api
+    ports:
+      - 4000:4000
+    depends_on: - database
+    links: - database
