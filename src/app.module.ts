@@ -8,8 +8,8 @@ import { Cadastro } from './model/cadastro.model';
   imports: [
     SequelizeModule.forRoot({
       dialect: 'mysql',
-      host: 'localhost',
-      port: 3306,
+      host: 'database',
+      // port: 3306,
       username: 'root',
       password: '',
       database: 'cadastro_medico',

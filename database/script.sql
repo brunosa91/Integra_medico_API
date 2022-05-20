@@ -13,7 +13,10 @@ numero varchar(255),
 complemento varchar(255),
 cidade varchar(255),
 estado varchar(255),
-especialidade varchar(255)
+especialidade varchar(255),
+createdAt datetime, 
+updatedAt datetime 
+
 ); 
 
 INSERT INTO cadastros (nome, crm, telefone, celular, cep, logradouro, numero, complemento, cidade, estado, especialidade) values
